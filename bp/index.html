@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun</title>
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fireworks {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: rotate(0deg) translateY(-1000px);
+            }
+            100% {
+                transform: rotate(360deg) translateY(1000px);
+            }
+        }
+
+        /* End credits scrolling effect */
+        @keyframes scrollingCredits {
+            0% {
+                transform: translateY(100%);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1E3A8A, #3B82F6); /* Gradasi biru elegan */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+            color: white; /* Warna tulisan putih */
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            animation: float 3s infinite ease-in-out;
+            color: white; /* Warna tulisan putih */
+        }
+
+        .torn-paper {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 2rem;
+            color: white; /* Warna tulisan putih */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .torn-paper:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2) 50%, transparent);
+        }
+
+        .torn-paper:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2) 50%, transparent);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .button {
+            background: #FF6347;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button:hover {
+            background: #FF4500;
+            transform: scale(1.05);
+        }
+
+        .button:nth-child(2) {
+            background: #FFD700;
+        }
+
+        .button:nth-child(2):hover {
+            background: #FFA500;
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #ff0, #f00, transparent);
+            border-radius: 50%;
+            animation: fireworks 1s ease-out forwards;
+        }
+
+        #celebration {
+            text-align: center;
+            color: white; /* Warna tulisan putih */
+        }
+
+        #celebration img {
+            max-width: 80%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* Page 3 - End credits effect */
+        #page3 {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            height: 200vh;
+            width: 100%;
+            overflow: hidden;
+            animation: scrollingCredits 30s linear infinite; /* Infinite scrolling */
+            color: white; /* Warna tulisan putih */
+        }
+
+        #page3 h1, #page3 p {
+            font-size: 2rem;
+            color: white; /* Warna tulisan putih */
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+
+        /* Add an image after the end credits */
+        #page3 img {
+            max-width: 80%;
+            height: auto;
+            margin-top: 40px;
+            border-radius: 10px;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards; /* Fade-in effect for the image */
+        }
+
+        .confetti {
+            position: absolute;
+            background-color: #FF6347;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: confetti 2s linear infinite;
+        }
+
+        /* Tombol "Putar Musik" */
+        #toggle-music {
+            background-color: #FF6347;
+            color: white;
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        #toggle-music:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            transform: scale(0);
+            transition: transform 0.4s ease;
+        }
+
+        #toggle-music:hover {
+            background-color: #FF4500;
+            transform: scale(1.1);
+        }
+
+        #toggle-music:active {
+            background-color: #FF3300;
+            transform: scale(1);
+        }
+
+        #toggle-music:hover:before {
+            transform: scale(1);
+        }
+
+        #toggle-music span {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="torn-paper">
+            <h2>Hai cinta</h2>
+            <p>Namamu Izzat bukan? Kalau iya, aku mau ngomongin sesuatu</p>
+        </div>
+        <div class="buttons">
+            <a href="#" class="button" onclick="showCelebration(event)">Iyha</a>
+            <a href="#" class="button" onclick="showCelebration(event)">Harus iyha</a>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration" style="display: none;">
+        <audio id="celebration-audio" loop>
+            <source src="C:\Users\hunay\Downloads\bp\Andra and The Backbone - Sempurna (lyrics).mp3" type="audio/mp3">
+        </audio>
+        <h1>Selamat Ulang Tahun ya Cinta :] </h1>
+        <p>aku punya hadian kecil nih coba pegang pipi ku oh ya putar musik nya dong biar makin romantis</p>
+        <img src="C:\Users\hunay\Downloads\bp\fot1.jpg" alt="Happy Birthday Image" onclick="goToPage3()">
+        
+        <button id="toggle-music" onclick="toggleMusic()">
+            <span>Putar Musik</span>
+        </button>
+    </div>
+
+    <div id="page3">
+        <h1>❤️ Happy birthday boo ❤️ </h1>
+        <img src="C:\Users\hunay\Downloads\bp\clw.png" alt="Special Photo" />
+        <p>Ciee Nambah tua ya kamu sayang ❤️</p>
+        <p>Makasih di tahun 2023 kamu udah hadir dalam hidup ku meskipun dengan cara yang agak aneh 
+            Makasih untuk note book one piece ku karena dengan itu kamu tertarik dengan ku 
+            Makasih untuk suka dan duka yang telah kita lalui bersama 
+            Makasih di tahun 2024 ini kamu sudah melakukan yang terbaik 
+            Kamu tetaplah kamu yang sudah mencintai dan menyayangi ku 
+            Meskipun tahun berganti dan umur mu pun bertambah kamu tetaplah kamu</p>
+            <img src="C:\Users\hunay\Downloads\bp\kejora-removebg-preview.png" alt="Special Photo" />
+    </div>
+
+    <script>
+        function showCelebration(event) {
+            event.preventDefault();
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('celebration').style.display = 'block';
+            createFireworks();
+            createConfetti();
+        }
+
+        function createFireworks() {
+            for (let i = 0; i < 30; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.left = `${Math.random() * window.innerWidth}px`;
+                firework.style.top = `${Math.random() * window.innerHeight}px`;
+                document.body.appendChild(firework);
+
+                setTimeout(() => {
+                    firework.remove();
+                }, 1000);
+            }
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * window.innerWidth}px`;
+                confetti.style.top = `${Math.random() * window.innerHeight}px`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 2000);
+            }
+        }
+
+        function goToPage3() {
+            document.getElementById('celebration').style.display = 'none';
+            document.getElementById('page3').style.display = 'block';
+        }
+
+        let isPlaying = false;
+        const audioElement = document.getElementById('celebration-audio');
+
+        function toggleMusic() {
+            if (!audioElement) return;
+
+            if (isPlaying) {
+                audioElement.pause();
+                document.getElementById('toggle-music').textContent = "Putar Musik";
+            } else {
+                audioElement.play();
+                document.getElementById('toggle-music').textContent = "Jeda Musik";
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
